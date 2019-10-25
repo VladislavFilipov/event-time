@@ -1,0 +1,88 @@
+@import '../params';
+
+.Header {
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+    
+
+    &__logo {
+        height: 4rem;
+
+        img {
+            height: 100%;
+        }
+    }
+
+    &__name {
+        // color: white;
+        background-color: $secondary;
+        height: 1.8rem;
+        display: flex;
+        align-items: center;
+        padding: 0 1rem;
+        border-radius: .5rem;
+        cursor: pointer;
+    }
+
+    &__switch {
+        box-sizing: content-box;
+        position: relative;
+        display: flex;
+        width: 10rem;
+        height: 1.8rem;
+        border: 0.05rem solid $secondary;
+        border-radius: .5rem;
+        color: white;
+        
+
+        .log-in, .sign-up {
+            width: 5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 0.8rem;
+            z-index: 2;
+            font-weight: bold;
+        }
+
+        .log-in {
+            color: black;
+        }
+
+        .moved-bg {
+            position: absolute;
+            width: 5rem;
+            left: 0;
+            height: 100%;
+            background-color: $secondary;
+            border-radius: .4rem;
+            z-index: 1;
+            transition: 0.2s;
+        }
+
+        .right {
+            left: 5rem;
+        }
+
+        .black-font {
+            color: black;
+        }
+
+        .white-font {
+            color: white;
+        }
+        // .sign-up {
+        //     width: 50%;
+
+        // }
+    }
+}
+

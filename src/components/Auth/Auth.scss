@@ -1,0 +1,96 @@
+@import '../params';
+
+.Auth {
+    height: 100vh;
+    background-color: $primary-dark;
+    display: flex;
+    align-items: flex-start;
+    padding-top: 25vh;
+    justify-content: center;
+
+    
+}
+
+.LogIn, .SignUp {
+    
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 2rem;
+    // flex-directi?n: column;
+    // justify-content: space-between;
+    width: 20rem;
+    margin: 0 2rem;
+
+    label {
+        position: relative;
+        div {
+            position: absolute;
+            top: 0.4rem;
+            color: $primary;
+            font-size: 1rem;
+            transition: .2s;
+        }
+    }
+
+    &__input {
+        background-color: inherit;
+        outline: none;
+        border: none;
+        border-bottom: 0.05rem solid $primary;
+        width: 100%;
+        padding: 0.5rem 0;
+        font-size: 1rem;
+        color: white;
+        
+        &:hover {
+            border-bottom: 0.05rem solid $secondary;
+        }
+        
+        &:focus {
+            border-bottom: 0.1rem solid $secondary;
+        }
+    }
+
+    button {
+        @include secondaryButton;
+        text-transform: uppercase;
+        margin-top: 2rem;
+        width: 80%;
+    }
+
+    .filled {
+        border-bottom: 0.1rem solid $secondary;
+    }
+
+    .focused {
+        top: -1rem;
+        font-size: 0.8rem;
+    }
+
+    &__alternative {
+        margin: 1.5rem 0;
+        color: $primary;
+        justify-self: center;
+        font-size: 1rem;
+    }
+
+    &__icons {
+        justify-self: center;
+        width: 40%;
+        color: white;
+        font-size: 2rem;
+
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+.btn-sign-in {
+    text-transform: uppercase;
+}
+
+// .SignIn {
+//     // display: flex;
+//     // flex-direction: column;
+
+// }

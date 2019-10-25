@@ -1,0 +1,16 @@
+$primary: rgb(79, 95, 104);
+$primary-dark: #263238;
+$secondary: #F9AA33;
+
+@mixin secondaryButton {
+    
+    outline: none;
+    border: none;
+    padding: 0.7rem;
+    border-radius: 2rem;
+    font-weight: bold;
+    justify-self: center;
+    color: black;
+    background-color: $secondary;
+    cursor: pointer;
+}

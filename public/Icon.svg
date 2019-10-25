@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="69px" height="51px" viewBox="0 0 69 51" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 58 (84663) - https://sketch.com -->
+    <title>Icon</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <filter x="-46.9%" y="-74.2%" width="193.9%" height="248.4%" filterUnits="objectBoundingBox" id="filter-1">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+        <filter x="-46.9%" y="-74.2%" width="193.9%" height="248.4%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+    </defs>
+    <g id="Splash-Screen-final" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Icon" transform="translate(6.000000, -63.000000)">
+            <g transform="translate(28.500000, 86.500000) scale(1, -1) translate(-28.500000, -86.500000) translate(4.000000, 71.000000)" id="icon">
+                <g filter="url(#filter-1)" transform="translate(24.500000, 15.500000) scale(1, -1) rotate(180.000000) translate(-24.500000, -15.500000) " fill="#F9AA33">
+                    <circle id="Oval" cx="5" cy="5" r="5"></circle>
+                    <circle id="Oval" cx="24" cy="26" r="5"></circle>
+                    <circle id="Oval" cx="44" cy="5" r="5"></circle>
+                </g>
+                <g filter="url(#filter-2)" transform="translate(24.500000, 15.500000) rotate(-180.000000) translate(-24.500000, -15.500000) " fill="#FFFFFF">
+                    <circle id="Oval" cx="5" cy="5" r="5"></circle>
+                    <circle id="Oval" cx="24" cy="26" r="5"></circle>
+                    <circle id="Oval" cx="44" cy="5" r="5"></circle>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
