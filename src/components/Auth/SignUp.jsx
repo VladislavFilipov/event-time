@@ -3,8 +3,7 @@ import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 
 import auth from '../../auth';
-
-import { inputHandler, focusHandler, blurHandler } from '../usingFuncs';
+import InputField from './InputField';
 
 export default function () {
 
@@ -67,62 +66,13 @@ export default function () {
 
     return (
         <div className="SignUp">
-            <label>
-                <div>first name</div>
-                <input
-                    className="LogIn__input LogIn__input_firstname"
-                    onInput={inputHandler}
-                    onFocus={focusHandler}
-                    onBlur={blurHandler}
-                />
-            </label>
-            <label>
-                <div>last name</div>
-                <input
-                    className="LogIn__input LogIn__input_lastname"
-                    onInput={inputHandler}
-                    onFocus={focusHandler}
-                    onBlur={blurHandler}
-                />
-            </label>
-            <label>
-                <div>login</div>
-                <input
-                    className="LogIn__input LogIn__input_login"
-                    onInput={inputHandler}
-                    onFocus={focusHandler}
-                    onBlur={blurHandler}
-                />
-            </label>
-            <label>
-                <div>email</div>
-                <input
-                    className="LogIn__input LogIn__input_email"
-                    onInput={inputHandler}
-                    onFocus={focusHandler}
-                    onBlur={blurHandler}
-                />
-            </label>
-            <label>
-                <div>password</div>
-                <input
-                    type="password"
-                    className="LogIn__input LogIn__input_psw"
-                    onInput={inputHandler}
-                    onFocus={focusHandler}
-                    onBlur={blurHandler}
-                />
-            </label>
-            <label>
-                <div>repeat password</div>
-                <input
-                    type="password"
-                    className="LogIn__input LogIn__input_rep-psw"
-                    onInput={inputHandler}
-                    onFocus={focusHandler}
-                    onBlur={blurHandler}
-                />
-            </label>
+            <InputField title="first name" type="text" class="LogIn__input_firstname" />
+            <InputField title="last name" type="text" class="LogIn__input_lastname" />
+            <InputField title="login" type="text" class="LogIn__input_login" />
+            <InputField title="email" type="email" class="LogIn__input_email" />
+            <InputField title="password" type="password" class="LogIn__input_psw" />
+            <InputField title="repeat password" type="password" class="LogIn__input_rep-psw" />
+
             <button onClick={onSignupClick}>sign up</button>
         </div>
     );

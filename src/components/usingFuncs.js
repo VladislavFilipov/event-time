@@ -4,10 +4,13 @@ export function inputHandler(event) {
     } else {
         event.currentTarget.classList.remove('filled');
     }
+
+    event.currentTarget.classList.remove('error');
 }
 
 export function focusHandler(event) {
     event.currentTarget.previousElementSibling.classList.add('focused');
+
 }
 
 export function blurHandler(event) {

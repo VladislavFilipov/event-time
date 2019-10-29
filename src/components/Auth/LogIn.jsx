@@ -2,8 +2,8 @@ import React from 'react';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 
-import { inputHandler, focusHandler, blurHandler } from '../usingFuncs';
 import auth from '../../auth';
+import InputField from './InputField';
 
 export default function () {
 
@@ -11,15 +11,15 @@ export default function () {
 
     let onLoginClick = (event) => {
         const parent = event.currentTarget.parentElement;
-        const email = parent.querySelector('.LogIn__input_name').value;
-        const psw = parent.querySelector('.LogIn__input_psw').value;
+        const email = parent.querySelector('.LogIn__input_name');
+        const psw = parent.querySelector('.LogIn__input_psw');
 
         axios({
             method: 'POST',
             url: 'http://195.123.221.101:8080/api/v1/auth/sign-in',
             data: {
-                "username": email,
-                "password": psw
+                "username": email.value,
+                "password": psw.value
             },
             headers: {
                 'Content-Type': 'application/json'
@@ -32,30 +32,18 @@ export default function () {
                     history.push("/events-list");
                 });
             })
-            .catch(err => console.log(err));
+            .catch(err => {
+                console.log(err);
+
+                email.classList.add('error');
+                psw.classList.add('error');
+            });
     }
 
     return (
         <div className="LogIn">
-            <label>
-                <div>name</div>
-                <input
-                    className="LogIn__input LogIn__input_name"
-                    onInput={inputHandler}
-                    onFocus={focusHandler}
-                    onBlur={blurHandler}
-                />
-            </label>
-            <label>
-                <div>password</div>
-                <input
-                    type="password"
-                    className="LogIn__input LogIn__input_psw"
-                    onInput={inputHandler}
-                    onFocus={focusHandler}
-                    onBlur={blurHandler}
-                />
-            </label>
+            <InputField title="name" type="text" class="LogIn__input_name" />
+            <InputField title="password" type="password" class="LogIn__input_psw" />
             <button onClick={onLoginClick}>log in</button>
             <div className="LogIn__alternative">Or Log in with</div>
             <div className="LogIn__icons">

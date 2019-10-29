@@ -67,6 +67,10 @@
         font-size: 0.8rem;
     }
 
+    .error {
+        border-bottom: 0.1rem solid red;
+    }
+
     &__alternative {
         margin: 1.5rem 0;
         color: $primary;
