@@ -1,34 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
+
+import { parseDate, parseTime } from '../usingFuncs';
 // import auth from '../../auth';
 
 import Header from '../Header/Header';
 
 import './EventsList.scss';
-
-const parseDate = (seconds) => {
-    const date = new Date(seconds * 1000);
-    const month = [
-        'January', 'February', 'March', 'April',
-        'May', 'June', 'July', 'August',
-        'September', 'October', 'November', 'December'
-    ][date.getMonth()];
-    const day = date.getDate();
-
-    return month + ' ' + day;
-}
-
-const parseTime = (seconds) => {
-    const date = new Date(seconds * 1000);
-    const time = (date.getHours() < 10 ? `0${date.getHours()}` : date.getHours())
-        + ':' +
-        (date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes());
-
-    return time;
-}
-
-const tags = ['Programming', 'Comics', 'Programming', 'Comics', 'Programming', 'Comics', 'Programming', 'Comics', 'Programming', 'Comics', 'Programming', 'Comics', 'Programming', 'Comics', 'Programming', 'Comics', 'Programming', 'Comics',];
-
 
 export default function () {
 
@@ -53,56 +32,50 @@ export default function () {
 
     let [chosenTags, setChosenTags] = useState([]);
 
-    // state = {
-    //     meetups: [],
-    //     tags: ['Programming', 'Comics', 'Programming', 'Comics', 'Programming', 'Comics', 'Programming', 'Comics', 'Programming', 'Comics', 'Programming', 'Comics', 'Programming', 'Comics', 'Programming', 'Comics', 'Programming', 'Comics',],
-    //     chosenTags: []
-    // }
+    let [tags, setTags] = useState([]);
+    useEffect(() => {
+        axios({
+            method: 'GET',
+            url: 'http://195.123.221.101:8080/api/v1/tag/',
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`,
+            }
+        })
+            .then(response => {
+                setTags(response.data);
+            })
+            .catch(err => console.log(err));
+    }, []);
 
     const onAddTagClick = (e) => {
         e.currentTarget.nextElementSibling.classList.toggle('hide');
     }
 
     const onTagCkick = (e) => {
-        // console.log(e.currentTarget.textContent)
         if (!e.currentTarget.classList.contains('active')) {
             e.currentTarget.classList.add('active');
-            // this.setState({
-            //     chosenTags: this.state.chosenTags.concat(e.currentTarget.textContent)
-            // })
-            setChosenTags(chosenTags.concat(e.currentTarget.textContent));
+            setChosenTags(chosenTags.concat(+e.currentTarget.id));
         } else {
             e.currentTarget.classList.remove('active');
-            let temp = chosenTags;
-            temp.splice(temp.indexOf(e.currentTarget.textContent), 1);
-            // this.setState({
-            //     chosenTags: temp
-            // });
+            let temp = chosenTags.slice();
+            temp.splice(temp.indexOf(+e.currentTarget.id), 1);
             setChosenTags(temp);
         }
     }
 
-    // componentDidMount() {
+    let filteredMeetups = meetups.filter(meetup => {
+        if (chosenTags.length === 0) return true;
 
-    //     // window.addEventListener('popstate', () => {
-    //     //     console.log(this.props.history.replace('/events-list'));
-    //     // })
+        let tagsId = meetup.tags.map(tag => tag.id);
 
-    //     axios({
-    //         method: 'GET',
-    //         url: 'http://195.123.221.101:8080/api/v1/meetup/',
-    //         headers: {
-    //             'Authorization': `Bearer ${localStorage.getItem('token')}`,
-    //         }
-    //     })
-    //         .then(response => {
-    //             // console.log(response.data);
-    //             this.setState({
-    //                 meetups: response.data
-    //             })
-    //         })
-    //         .catch(err => console.log(err));
-    // }
+        let res = false;
+        tagsId.forEach(tagId => {
+            if (chosenTags.includes(tagId))
+                res = true;
+        });
+
+        return res;
+    });
 
     return (
         <div className="EventsList">
@@ -116,28 +89,35 @@ export default function () {
                                 <button
                                     className="tags__list-item"
                                     onClick={onTagCkick}
+                                    id={tag.id}
                                 >
-                                    {tag}
+                                    {tag.name}
                                 </button>
                             </li>
                         ))}
                     </ul>
                 </div>
                 <div className="EventsList__meetups">
-                    {meetups.map((meetup, i) => (
-                        <div key={i} className="EventsList__meetup meetup" style={{ backgroundImage: `url(${meetup.imageUrl})` }}>
-                            <div className="meetup__info">
-                                <div>
-                                    <div className="meetup__name">{meetup.meetup_name}</div>
-                                    <div className="meetup__city">Russia, {meetup.city.name_en}</div>
+                    {filteredMeetups
+                        .map((meetup) => (
+                            <Link to={`/event-page/${meetup.id}`} key={meetup.id}>
+                                <div
+                                    className="EventsList__meetup meetup"
+                                    style={{ backgroundImage: `url(${meetup.imageUrl})` }}
+                                >
+                                    <div className="meetup__info">
+                                        <div>
+                                            <div className="meetup__name">{meetup.meetup_name}</div>
+                                            <div className="meetup__city">Russia, {meetup.city.name_en}</div>
+                                        </div>
+                                        <div>
+                                            <div className="meetup__date">{parseDate(meetup.start_date)}</div>
+                                            <div className="meetup__time">{parseTime(meetup.start_date)}</div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div>
-                                    <div className="meetup__date">{parseDate(meetup.start_date)}</div>
-                                    <div className="meetup__time">{parseTime(meetup.start_date)}</div>
-                                </div>
-                            </div>
-                        </div>
-                    ))}
+                            </Link>
+                        ))}
                 </div>
             </div>
         </div>
