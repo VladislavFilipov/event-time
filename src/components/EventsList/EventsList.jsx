@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 import { parseDate, parseTime } from '../usingFuncs';
-// import auth from '../../auth';
 
 import Header from '../Header/Header';
 
@@ -21,10 +20,6 @@ export default function () {
             }
         })
             .then(response => {
-                // console.log(response.data);
-                // this.setState({
-                //     meetups: response.data
-                // })
                 setMeetups(response.data);
             })
             .catch(err => console.log(err));

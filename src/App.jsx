@@ -1,11 +1,8 @@
 import React from 'react';
 import {
-    // BrowserRouter as Router,
     Switch,
     Route,
-    Redirect,
-    // useHistory
-    // Link
+    Redirect
 } from "react-router-dom";
 
 import Auth from './components/Auth/Auth';
