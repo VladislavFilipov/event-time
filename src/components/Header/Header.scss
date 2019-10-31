@@ -33,6 +33,13 @@
         cursor: pointer;
     }
 
+    &__logout {
+        margin-left: 0.5rem;
+        padding-left: 0.5rem;
+        border-left: 0.05rem solid black;
+        color: black;
+    }
+
     &__switch {
         box-sizing: content-box;
         position: relative;

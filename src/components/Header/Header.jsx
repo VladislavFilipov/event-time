@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import './Header.scss';
 
@@ -17,10 +18,16 @@ export default function (props) {
     return (
         <div className="Header">
             <div className="Header__logo">
-                <img src="icon.png" alt="" />
+                <img src="/icon.png" alt="" />
             </div>
             {localStorage.getItem('name') ?
-                <div className="Header__name"><i className="fas fa-user-circle"></i>&nbsp;&nbsp;{localStorage.getItem('name')}</div>
+                <div className="Header__name">
+                    <i className="fas fa-user-circle"></i>&nbsp;&nbsp;{localStorage.getItem('name')}
+                    <Link to="/auth">
+                        <span className="Header__logout" onClick={() => localStorage.clear()}><i className="fas fa-sign-out-alt"></i></span>
+                    </Link>
+
+                </div>
                 :
                 <div className="Header__switch" onClick={changeAuth}>
                     <span className="log-in">Log In</span>
